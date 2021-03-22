@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 
+import com.example.collectiondemoapp.R;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,7 +34,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<EmployeeData> list;
     EmployeeAdapter adapter;
-    Button btnSort;
     RecyclerView recyclerView;
     private SearchView searchView;
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //pass values into array
         list = new ArrayList<>();
         list.add(new EmployeeData("ram", R.drawable.ic_launcher_foreground, 1));
         list.add(new EmployeeData("mohan", R.drawable.ic_launcher_foreground, 2));
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new EmployeeData("deepak", R.drawable.ic_launcher_foreground, 7));
         list.add(new EmployeeData("manish", R.drawable.ic_launcher_foreground, 8));
         list.add(new EmployeeData("aryan", R.drawable.ic_launcher_foreground, 9));
+        list.add(new EmployeeData("advik", R.drawable.ic_launcher_foreground, 10));
+
 
 
 
@@ -59,12 +64,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         adapter = new EmployeeAdapter(list);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //set layout here
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(adapter);
 
 
     }
 
+
+    //for search menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
